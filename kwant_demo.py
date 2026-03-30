@@ -63,16 +63,22 @@ print(f"系统尺寸：{L} x {W}")
 print(f"总格点数：{len(syst.sites)}")
 print(f"总跃迁数：{len(syst.hoppings)}")
 
-# 绘制系统结构图
-plt.figure(figsize=(10, 4))
-kwant.plot(syst, site_size=50, site_color='lightblue', 
-           hop_color='gray', hop_lw=1)
-plt.title('Kwant Demo: Quantum Point Contact System')
-plt.xlabel('x')
-plt.ylabel('y')
+# 绘制系统结构图 - 使用 matplotlib 后端并确保正确渲染
+fig, ax = plt.subplots(figsize=(10, 4))
+# 使用空心圆点和细线来清晰展示晶格结构
+kwant.plot(syst, ax=ax, 
+           site_size=0.03,  # 较小的格点尺寸（相对单位）
+           site_color='darkblue',
+           hop_color='gray', 
+           hop_lw=0.5)
+ax.set_title('Kwant Demo: Quantum Point Contact System')
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_aspect('equal')
 plt.tight_layout()
-plt.savefig('kwant_system_structure.png', dpi=150)
+plt.savefig('kwant_system_structure.png', dpi=150, facecolor='white', edgecolor='none')
 print("System structure saved as 'kwant_system_structure.png'")
+plt.close()
 
 # 计算透射系数随能量的变化
 energies = np.linspace(-3*t, 3*t, 100)
