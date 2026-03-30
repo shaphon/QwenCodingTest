@@ -64,15 +64,15 @@ print(f"总格点数：{len(syst.sites)}")
 print(f"总跃迁数：{len(syst.hoppings)}")
 
 # 绘制系统结构图
-fig, ax = plt.subplots(figsize=(10, 4))
-kwant.plot(syst, ax=ax, site_size=50, site_color='lightblue', 
+plt.figure(figsize=(10, 4))
+kwant.plot(syst, site_size=50, site_color='lightblue', 
            hop_color='gray', hop_lw=1)
-ax.set_title('Kwant 演示：量子点接触系统')
-ax.set_xlabel('x')
-ax.set_ylabel('y')
+plt.title('Kwant Demo: Quantum Point Contact System')
+plt.xlabel('x')
+plt.ylabel('y')
 plt.tight_layout()
 plt.savefig('kwant_system_structure.png', dpi=150)
-print("系统结构图已保存为 'kwant_system_structure.png'")
+print("System structure saved as 'kwant_system_structure.png'")
 
 # 计算透射系数随能量的变化
 energies = np.linspace(-3*t, 3*t, 100)
@@ -92,7 +92,7 @@ fig, ax = plt.subplots(figsize=(8, 5))
 ax.plot(energies/t, transmissions, 'b-', linewidth=2)
 ax.set_xlabel('Energy / t', fontsize=12)
 ax.set_ylabel('Transmission T(E)', fontsize=12)
-ax.set_title('透射系数 vs 能量', fontsize=14)
+ax.set_title('Transmission vs Energy', fontsize=14)
 ax.axvline(x=E_F/t, color='r', linestyle='--', label=f'Fermi Energy (E_F/t={E_F/t})')
 ax.legend()
 ax.grid(True, alpha=0.3)
@@ -100,7 +100,7 @@ ax.set_xlim(-3, 3)
 ax.set_ylim(0, max(transmissions)*1.1)
 plt.tight_layout()
 plt.savefig('kwant_transmission.png', dpi=150)
-print("透射系数图已保存为 'kwant_transmission.png'")
+print("Transmission plot saved as 'kwant_transmission.png'")
 
 # 计算在费米能级处的电导（Landauer 公式：G = (2e²/h) * T）
 smatrix = kwant.smatrix(syst, energy=E_F)
