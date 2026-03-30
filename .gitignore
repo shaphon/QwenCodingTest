@@ -1,1 +1,1 @@
-Nothing should be ignored in this case. The changes only include source code (.py) and image files (.png), which should be tracked in version control. There are no build artifacts, dependencies, or temporary files that need to be ignored.
+Nothing should be ignored since the changes only include source code (.py) and image files (.png), which are not build artifacts, dependencies, or temporary files.
